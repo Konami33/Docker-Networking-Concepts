@@ -58,3 +58,10 @@ Any data sent to the loopback address is internally looped back to the same devi
 
 The eth0 interface on a Linux system serves as the primary Ethernet network interface. eth0 enables the Linux system to connect to Ethernet-based local area networks (LANs) or the internet. eth0 handles the sending and receiving of data packets to and from other devices on the network. It encapsulates outgoing data packets with appropriate Ethernet headers and processes incoming packets by removing their headers and passing the payload to the operating system.
 
+## Namespace
+
+![alt text](./images/ns.png)
+
+A namespace is a feature that allows for the isolation and separation of network resources. It provides a way to create multiple independent instances of network stacks on a single system, each with its own set of network interfaces, routing tables, firewall rules, and network-related resources.
+
+Namespaces are commonly used in containerization technologies such as Docker, Kubernetes, and LXC (Linux Containers) to create isolated environments for applications or services. Each container typically has its own network namespace, allowing it to have its own networking configuration and connectivity, independent of other containers or the host system.
