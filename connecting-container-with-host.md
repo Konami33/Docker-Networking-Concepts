@@ -1,10 +1,10 @@
-# Connecting a container to host using virtual Ethernet cable
+# Connecting a custom namespace to host using virtual Ethernet cable
 
-Connecting a container to a host using a virtual Ethernet cable provides a seamless and efficient means of facilitating network communication between containerized applications and the underlying host system
+Connecting a namespace to a host using a virtual Ethernet cable provides a seamless and efficient means of facilitating network communication between the namespace and the underlying host system.
 
 ![alt text](./images/ns1.png)
 
-## What is a virtual Ethernet cable?
+# What is a virtual Ethernet cable?
 
 A virtual Ethernet cable or a `veth cable`, more commonly known as a veth pair or a virtual Ethernet pair, is a type of virtual network interface in Linux. It consists of two interconnected virtual Ethernet interfaces that behave like the ends of a physical Ethernet cable and creates a direct, low-latency link between a container and the host system's network stack.
 
@@ -16,7 +16,7 @@ Here's how a veth pair typically works:
 
 **Communication:** When packets are sent through one end of the veth pair (e.g., veth0), they emerge at the other end (e.g., veth1) as if they had traversed a physical Ethernet cable. This allows network communication between the connected endpoints, even though they may be in separate network namespaces or containers.
 
-## How to create a veth cable?
+# How to create a veth cable?
 
 To create a virtual Ethernet (veth) pair, `ip link` command can be used in Linux.
 
@@ -39,16 +39,16 @@ ip link show
 
 This command will display a list of network interfaces inside the root namespace.
 
-## How to connect a container to a veth cable?
+# How to connect a namespace to a veth cable?
 
-The newly created veth cable with two veth pair resides into the root namespace. Then one end of the veth pair need to attach to the network namespace of the custom container. This can be done by `ip link` set command.
+The newly created veth cable with two veth pair resides into the root namespace. Then one end of the veth pair need to attach to the custom network namespace. This can be done by `ip link` set command.
 ```bash
-sudo ip link set veth0 netns custom_namespace
+sudo ip link set veth1 netns custom_namespace
 ```
 
 ![alt text](./images/veth.png)
 
-## Configuration of the network? 
+# Configuration of the network
 
 To configure the IP address of the container and the host namespace (host system):
 
@@ -59,16 +59,16 @@ Inside the container, assign an IP address to the other end of the veth pair (ve
 On the host system, add a route for the container's IP subnet via the veth interface.
 Inside the container, add a default route pointing to the veth interface.
 
-## Connectivity test
+# Connectivity test
 
 To test the connectivity between the container and the host namespace after configuring their IP addresses and routes, we can use `ping` command.
 
-# From the container
+## From the custom namespace
 ```bash
 ping 192.168.1.1 -c 3
 ```
 
-# From the host namespace
+## From the host namespace
 ```bash
 ping 192.168.1.2 -c 3
 ```
