@@ -10,27 +10,9 @@ Linux includes built-in packet filtering and firewall capabilities, primarily th
 
 Linux provides tools for monitoring network activity, diagnosing connectivity issues, and troubleshooting network problems. Utilities like `ping`, `traceroute`, `netstat`, `tcpdump`, and `wireshark` are commonly used for analyzing network traffic, identifying network bottlenecks, and debugging network configurations. Linux also includes features for securing network communications and protecting against unauthorized access.
 
-## Understanding linux network stack
+## Understanding Linux Network Stack
 
-The Linux network stack comprises seven layers, each with specific functions to enable network communication. It operates in two directions: A request from a client and response from the server of that request.
-
-![alt text](./images/networkstack.png)
-
-The layers are categorized into three sets: User Space (topmost layer), Kernel Space (next five layers), and Physical Layer (final layer).
-
-1. **User Space (Application Layer)**: Where user applications reside, such as browsers or file-sharing applications. Applications in this layer interact with the network, accessing files or resources over the network.
-
-2. **System Call Interface (SCI)**: Handles calls from the Application Layer to the Kernel. For instance, a word processor might issue a read call to the Kernel to request a file from a network location.
-
-3. **Protocol Agnostic Interface**: Responsible for creating and managing sockets, which facilitate communication between applications. Sockets are identified by unique IDs (similar to TCP/IP ports) and are used for transmitting and receiving data.
-
-4. **Network Protocol**: Determines how data is sent or received across the network. It handles routing information, particularly in networks with routers.
-
-5. **Device Agnostic Interface**: Connects data between the Kernel and network device drivers.
-
-6. **Device Drivers Layer**: Contains the actual device drivers for network hardware, preparing data for transmission over the network medium.
-
-7. **Physical Hardware**: The physical network hardware where data packets are transmitted and received. This includes both wired and wireless network mediums.
+The Linux network stack consists of seven layers, facilitating communication between applications and physical hardware. It operates bidirectionally, handling requests from clients and responses from servers. Layers include User Space, Kernel Space, and the Physical Layer, with functions like protocol handling, device driver management, and data transmission.
 
 ## What Is a Network Interface?
 
